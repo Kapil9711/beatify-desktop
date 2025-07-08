@@ -24,7 +24,10 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
     "@heroui/react": "^2.7.11",
-    "framer-motion": "^12.23.0"
+    "@iconify/react": "^6.0.0",
+    "axios": "^1.10.0",
+    "framer-motion": "^12.23.0",
+    "react-router-dom": "^7.6.3"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",

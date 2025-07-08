@@ -1,12 +1,15 @@
-import { Button } from '@heroui/react'
+import { Outlet } from 'react-router-dom'
+import AuthProvider from './providers/authProvider'
 
-function App(): React.JSX.Element {
+export default function App() {
   return (
-    <div>
-      <Button color="primary">Button</Button>
-      <h1 className="text-4xl text-orange-600">Hello world!</h1>
-    </div>
+    <AuthProvider>
+      <div className="electron-app">
+        <header className="electron-titlebar">{/* Custom title bar */}</header>
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </AuthProvider>
   )
 }
-
-export default App
