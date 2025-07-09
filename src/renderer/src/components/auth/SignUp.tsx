@@ -2,6 +2,7 @@ import { Button, Input, Checkbox, Link, Form, Divider } from '@heroui/react'
 import { Icon } from '@iconify/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { icons } from '@renderer/data/ImagesAndIcon'
 
 const SignUP = () => {
   const [isVisible, setIsVisible] = React.useState(false)
@@ -12,8 +13,8 @@ const SignUP = () => {
   }
   const navigate = useNavigate()
   return (
-    <div className="flex h-full w-full items-center justify-center">
-      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large bg-content1 px-8 pb-10 pt-6 shadow-small">
+    <div className="flex h-full w-full items-center justify-center ">
+      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl shadow-blue-400 bg-gray-50">
         <div className="flex flex-col gap-1">
           <h1 className="text-large font-medium">Sign Up</h1>
           <p className="text-small text-default-500">Welcome to Beatify</p>
@@ -22,36 +23,31 @@ const SignUP = () => {
         <Form className="flex flex-col gap-3" validationBehavior="native" onSubmit={handleSubmit}>
           <Input
             isRequired
-            label="Username"
-            name="userName"
-            placeholder="Enter your Username"
-            type="text"
-            variant="bordered"
-          />
-          <Input
-            isRequired
             label="Email Address"
             name="email"
             placeholder="Enter your email"
             type="email"
             variant="bordered"
+            size="sm"
           />
-
           <Input
             isRequired
+            label="Username"
+            name="userName"
+            placeholder="Enter Your Username"
+            type="text"
+            variant="bordered"
+            size="sm"
+          />
+          <Input
+            isRequired
+            size="sm"
             endContent={
               <button type="button" onClick={toggleVisibility}>
-                {isVisible ? (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-closed-linear"
-                  />
-                ) : (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-bold"
-                  />
-                )}
+                <Icon
+                  className="pointer-events-none text-2xl text-default-400"
+                  icon={isVisible ? icons.eyeClosed : icons.eyeBold}
+                />
               </button>
             }
             label="Password"
@@ -62,37 +58,25 @@ const SignUP = () => {
           />
           <Input
             isRequired
+            size="sm"
             endContent={
               <button type="button" onClick={toggleVisibility}>
-                {isVisible ? (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-closed-linear"
-                  />
-                ) : (
-                  <Icon
-                    className="pointer-events-none text-2xl text-default-400"
-                    icon="solar:eye-bold"
-                  />
-                )}
+                <Icon
+                  className="pointer-events-none text-2xl text-default-400"
+                  icon={isVisible ? icons.eyeClosed : icons.eyeBold}
+                />
               </button>
             }
             label="Confirm Password"
-            name="confirmPassword"
+            name="password"
             placeholder="Enter your password"
             type={isVisible ? 'text' : 'password'}
             variant="bordered"
           />
-          <div className="flex w-full items-center justify-between px-1 py-2">
-            <Checkbox name="remember" size="sm">
-              Remember me
-            </Checkbox>
-            <Link className="text-default-500" href="#" size="sm">
-              Forgot password?
-            </Link>
-          </div>
+
+          <div className="flex w-full items-center justify-between px-1 py-2"></div>
           <Button className="w-full" color="primary" type="submit">
-            Sign Up
+            Sign In
           </Button>
         </Form>
         <div className="flex items-center gap-4 py-2">
@@ -101,17 +85,8 @@ const SignUP = () => {
           <Divider className="flex-1" />
         </div>
         <div className="flex flex-col gap-2">
-          <Button
-            startContent={<Icon icon="flat-color-icons:google" width={24} />}
-            variant="bordered"
-          >
+          <Button startContent={<Icon icon={icons.googleIcon} width={24} />} variant="bordered">
             Continue with Google
-          </Button>
-          <Button
-            startContent={<Icon className="text-default-500" icon="fe:github" width={24} />}
-            variant="bordered"
-          >
-            Continue with Github
           </Button>
         </div>
         <p className="text-center text-small">
@@ -119,11 +94,11 @@ const SignUP = () => {
           <Link
             className="cursor-pointer"
             onClick={() => {
-              navigate('/auth/sign-up')
+              navigate('/auth/sign-in')
             }}
             size="sm"
           >
-            Sign Up
+            Sign In
           </Link>
         </p>
       </div>

@@ -7,7 +7,17 @@ module.exports = {
     './node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        background: '#121212',
+        surface: '#1E1E1E',
+        primary: '#1DB954', // Spotify green
+        secondary: '#535353',
+        accent: '#BB86FC',
+        text: '#FFFFFF',
+        muted: '#B3B3B3'
+      }
+    }
   },
   darkMode: 'class',
   plugins: [heroui()]
