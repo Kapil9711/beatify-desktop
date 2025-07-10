@@ -1549,6 +1549,27 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/retry/-/retry-0.4.3.tgz#c2b9d2e374ee62c586d3adbea87199b1d7a7a6ba"
   integrity sha512-bV0Tgo9K4hfPCek+aMAn81RppFKv2ySDQeMoSZuvTASywNTnVJCArCZE2FWqpvIatKu7VMRLWlR1EazvVhDyhQ==
 
+"@iconify-icons/fe@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@iconify-icons/fe/-/fe-1.2.5.tgz#c07332b36123196077bee8ca65f58291ea3750da"
+  integrity sha512-q/SZ9vKafgoSk/T4rjWBoCnC+CfEudYNRTU59Bilc4nSgihFGonKZxaSKIwhjbiUbHmipLE8OFavRfq/lrTPcw==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify-icons/flat-color-icons@^1.2.5":
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/@iconify-icons/flat-color-icons/-/flat-color-icons-1.2.5.tgz#95cc29f077c913160afd65dba8fe1fd06e7f6940"
+  integrity sha512-TEbE+kn9auNI1jGiggxCNPlpgjdA2hHTaZ5dNtsceaBvE9lyZy5jUaIJryxJQYe0cy1C8b16yov1XW3FrSJI4Q==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify-icons/solar@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@iconify-icons/solar/-/solar-1.2.3.tgz#6aaab0dd22ca017cde401e16222e15f33635df5f"
+  integrity sha512-yGLhu8oggEEGI63UG7y24+mzNytp+0pIc9+7AYRBlYzaQuThqVmAYj4d79Gif+pIrLfv+y+d0HFl9miQAPUj/Q==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify/react@^6.0.0":
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/@iconify/react/-/react-6.0.0.tgz#8e7ed943792746a0401cc49b9b4e9a5bd5f09b1a"
@@ -1556,7 +1577,7 @@
   dependencies:
     "@iconify/types" "^2.0.0"
 
-"@iconify/types@^2.0.0":
+"@iconify/types@*", "@iconify/types@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@iconify/types/-/types-2.0.0.tgz#ab0e9ea681d6c8a1214f30cd741fe3a20cc57f57"
   integrity sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==
@@ -2751,6 +2772,18 @@
   integrity sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==
   dependencies:
     defer-to-connect "^2.0.0"
+
+"@tanstack/query-core@5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/query-core/-/query-core-5.81.5.tgz#14e0cc778bad8bc11d1cf130709910d8a353bb73"
+  integrity sha512-ZJOgCy/z2qpZXWaj/oxvodDx07XcQa9BF92c0oINjHkoqUPsmm3uG08HpTaviviZ/N9eP1f9CM7mKSEkIo7O1Q==
+
+"@tanstack/react-query@^5.81.5":
+  version "5.81.5"
+  resolved "https://registry.yarnpkg.com/@tanstack/react-query/-/react-query-5.81.5.tgz#660dba8bb35f24c4cf3617b299a1e3990a3bb49e"
+  integrity sha512-lOf2KqRRiYWpQT86eeeftAGnjuTR35myTP8MXyvHa81VlomoAWNEd8x5vkcAfQefu0qtYCvyqLropFZqgI2EQw==
+  dependencies:
+    "@tanstack/query-core" "5.81.5"
 
 "@tanstack/react-virtual@3.11.3":
   version "3.11.3"

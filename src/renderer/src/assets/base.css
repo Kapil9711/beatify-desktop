@@ -42,3 +42,11 @@
   margin: 0;
   font-weight: normal;
 }
+
+[data-slot='input-wrapper'] {
+  border-radius: 5px;
+}
+
+button {
+  border-radius: 5px !important;
+}

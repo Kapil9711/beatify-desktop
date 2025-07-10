@@ -24,7 +24,11 @@
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^4.0.0",
     "@heroui/react": "^2.7.11",
+    "@iconify-icons/fe": "^1.2.5",
+    "@iconify-icons/flat-color-icons": "^1.2.5",
+    "@iconify-icons/solar": "^1.2.3",
     "@iconify/react": "^6.0.0",
+    "@tanstack/react-query": "^5.81.5",
     "axios": "^1.10.0",
     "framer-motion": "^12.23.0",
     "react-router-dom": "^7.6.3"
