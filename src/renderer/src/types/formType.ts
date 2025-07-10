@@ -4,6 +4,11 @@ export type LoginForm = {
   remember: boolean
 }
 
+export type UserAction =
+  | { type: 'LOGIN'; payload: LoginForm }
+  | { type: 'REGISTER'; payload: { email: string; password: string; userName: string } }
+  | { type: 'LOGOUT'; payload: undefined }
+
 export type useAuthReturn = {
   loginForm: LoginForm
   setLoginForm: React.Dispatch<React.SetStateAction<LoginForm>>
@@ -11,4 +16,5 @@ export type useAuthReturn = {
     eOrValue: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement> | any,
     fieldName?: keyof LoginForm
   ) => void
+  handleUserAction: (action: UserAction) => void
 }

@@ -7,7 +7,7 @@ const getToken = (): string | null => {
 
 // 2. Create an Axios instance
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:5000', // <-- Replace with actual base URL
+  baseURL: 'http://localhost:5000/api/v1', // <-- Replace with actual base URL
   headers: {
     'Content-Type': 'application/json'
   }
@@ -31,15 +31,14 @@ interface AxiosBaseArgs {
   headers?: Record<string, string>
 }
 
-interface SuccessResponse<T = any> {
+export interface SuccessResponse<T = any> {
   data: T
+  status: number
 }
 
-interface ErrorResponse {
-  error: {
-    status: number
-    data: any
-  }
+export interface ErrorResponse {
+  status: number
+  data: any
 }
 
 // 5. Generic Axios API wrapper
@@ -56,15 +55,12 @@ export const axiosBase = async <T = any>(
       params,
       headers
     })
-    return { data: response.data }
+    return { data: response.data, status: 200 }
   } catch (error) {
     const err = error as AxiosError
-
     return {
-      error: {
-        status: err.response?.status || 500,
-        data: err.response?.data || err.message
-      }
+      status: err.response?.status || 500,
+      data: err.response?.data || err.message
     }
   }
 }

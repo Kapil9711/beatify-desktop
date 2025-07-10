@@ -26,6 +26,16 @@ function createWindow(): void {
     return { action: 'deny' }
   })
   mainWindow.webContents.openDevTools()
+  mainWindow.webContents.session.webRequest.onHeadersReceived((details, callback) => {
+    callback({
+      responseHeaders: {
+        ...details.responseHeaders,
+        'Content-Security-Policy': [
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http://localhost:5173 http://localhost:5000; connect-src 'self' ws://localhost:5173 http://localhost:5000"
+        ]
+      }
+    })
+  })
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.

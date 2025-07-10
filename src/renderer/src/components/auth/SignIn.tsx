@@ -8,13 +8,12 @@ import { useAuthContext } from '@renderer/pages/Auth'
 const SignIn = () => {
   const [isVisible, setIsVisible] = React.useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    console.log('handleSubmit')
-  }
   const navigate = useNavigate()
   const authContextData = useAuthContext()
-  console.log(authContextData)
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    authContextData?.handleUserAction({ type: 'LOGIN', payload: authContextData.loginForm })
+  }
   return (
     <div className="flex h-full w-full items-center justify-center ">
       <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl shadow-blue-400 bg-gray-50">
@@ -25,7 +24,7 @@ const SignIn = () => {
 
         <Form className="flex flex-col gap-3" validationBehavior="native" onSubmit={handleSubmit}>
           <Input
-            isRequiredvalue
+            isRequired
             label="Email Address"
             name="email"
             placeholder="Enter your email"
