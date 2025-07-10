@@ -3,6 +3,7 @@ import { useForm } from '../customHooks/useForm'
 import { useMutation } from '@tanstack/react-query'
 import { loginUserApi } from './api'
 import { generalUtil } from '@renderer/utils/generalUtility'
+import { handleErrorResponse, handleSuccessResponse } from '@renderer/utils/apiUtils'
 
 const useAuth = (): useAuthReturn => {
   const { loginForm, setLoginForm, loginHandleChange, handleUserAction } = useLogin()
@@ -47,23 +48,12 @@ const useLogin = () => {
     mutationKey: ['loginUser'],
     mutationFn: (payload: LoginForm) => loginUserApi(payload),
     onSuccess: (response) => {
-      console.log(response)
-      const { status, data } = response
+      const { status } = response
       if (status == 200) {
-        const { token, message } = data
-        localStorage.setItem('token', token)
-        alert(message)
-        setTimeout(() => {
-          window.location.href = '/'
-        }, 200)
+        handleSuccessResponse({ type: 'LOGIN', payload: response })
       }
       if (status != 200) {
-        if (typeof data == 'string') {
-          alert(data)
-        } else {
-          const { message } = data
-          alert(message)
-        }
+        handleErrorResponse({ type: 'COMMON', payload: response })
       }
     }
   })
