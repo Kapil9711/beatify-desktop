@@ -3,13 +3,15 @@ import { Icon } from '@iconify/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { icons } from '@renderer/data/ImagesAndIcon'
+import { useAuthContext } from '@renderer/pages/Auth'
 
 const SignUP = () => {
   const [isVisible, setIsVisible] = React.useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
+  const authContextData = useAuthContext()
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log('handleSubmit')
+    authContextData?.handleUserAction({ type: 'REGISTER', payload: authContextData.registerForm })
   }
   const navigate = useNavigate()
   return (
@@ -29,6 +31,8 @@ const SignUP = () => {
             type="email"
             variant="bordered"
             size="sm"
+            onChange={authContextData?.registerHandleChange}
+            value={authContextData?.registerForm.email}
           />
           <Input
             isRequired
@@ -38,6 +42,8 @@ const SignUP = () => {
             type="text"
             variant="bordered"
             size="sm"
+            onChange={authContextData?.registerHandleChange}
+            value={authContextData?.registerForm.userName}
           />
           <Input
             isRequired
@@ -55,6 +61,8 @@ const SignUP = () => {
             placeholder="Enter your password"
             type={isVisible ? 'text' : 'password'}
             variant="bordered"
+            onChange={authContextData?.registerHandleChange}
+            value={authContextData?.registerForm.password}
           />
           <Input
             isRequired
@@ -68,15 +76,21 @@ const SignUP = () => {
               </button>
             }
             label="Confirm Password"
-            name="password"
+            name="confirmPassword"
             placeholder="Enter your password"
             type={isVisible ? 'text' : 'password'}
             variant="bordered"
+            onChange={authContextData?.registerHandleChange}
+            value={
+              typeof authContextData?.registerForm.confirmPassword == 'string'
+                ? authContextData.registerForm.confirmPassword
+                : ''
+            }
           />
 
           <div className="flex w-full items-center justify-between px-1 py-2"></div>
           <Button className="w-full" color="primary" type="submit">
-            Sign In
+            Sign Up
           </Button>
         </Form>
         <div className="flex items-center gap-4 py-2">

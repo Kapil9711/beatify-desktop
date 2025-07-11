@@ -4,6 +4,8 @@ import { createContext } from 'react'
 import { Spinner } from '@heroui/react'
 import axios from 'axios'
 
+export let globalNavigate: any = null
+
 interface AuthContextType {
   user: { userName: string; email: string; profileImage: string; id: string } | null
   login: (token: string) => void
@@ -21,6 +23,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     initializeAuth()
   }, [])
+
+  useEffect(() => {
+    globalNavigate = navigate
+  }, [navigate])
 
   const initializeAuth = async () => {
     setLoading(true)

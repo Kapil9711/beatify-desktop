@@ -1,4 +1,5 @@
 import { ErrorResponse, SuccessResponse } from '@renderer/apiConfig/api'
+import { globalNavigate } from '@renderer/providers/authProvider'
 
 //this type is for response error message
 type UserResponseErrorMessage = string | { message: string }
@@ -7,6 +8,11 @@ type UserResponseErrorMessage = string | { message: string }
 type UserLoginSuccessResponse = {
   data: any
   token: string
+  message: string
+}
+
+type UserRegisterSuccessResponse = {
+  data: any
   message: string
 }
 
@@ -25,10 +31,17 @@ export const handleSuccessResponse = (action: UserActionSuccessResponse) => {
     window.location.href = '/'
   }
 
+  const handleRegisterResponse = (payload: UserRegisterSuccessResponse) => {
+    const { message } = payload
+    alert(message)
+    globalNavigate('/auth/sign-in')
+  }
+
   switch (action.type) {
     case 'LOGIN':
       handleLoginResponse(action.payload.data)
     case 'REGISTER':
+      handleRegisterResponse(action.payload.data)
     case 'LOGOUT':
   }
 }
