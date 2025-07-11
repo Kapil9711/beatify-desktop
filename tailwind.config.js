@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const { heroui } = require('@heroui/react')
+
 module.exports = {
   content: [
     './src/renderer/*.{html,js}',
@@ -425,5 +426,5 @@ module.exports = {
     }
   },
   darkMode: 'class',
-  plugins: [heroui()]
+  plugins: [heroui(), require('tailwindcss-animate')]
 }
