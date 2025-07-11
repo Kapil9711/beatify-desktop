@@ -16,7 +16,7 @@ const SignIn = () => {
   }
   return (
     <div className="flex h-full w-full items-center justify-center ">
-      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl shadow-blue-400 bg-gray-50">
+      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl animate-border-glow bg-gray-50">
         <div className="flex flex-col gap-1">
           <h1 className="text-large font-medium">Sign in to your account</h1>
           <p className="text-small text-default-500">to continue to Beatify</p>
@@ -66,7 +66,7 @@ const SignIn = () => {
               Forgot password?
             </Link>
           </div>
-          <Button className="w-full" color="primary" type="submit">
+          <Button className="w-full " color="primary" type="submit">
             Sign In
           </Button>
         </Form>

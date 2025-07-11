@@ -237,7 +237,7 @@ module.exports = {
           '100%': { 'background-position': '100% 50%' }
         },
         borderGlow: {
-          '0%': { 'box-shadow': '0 0 5px 0px rgba(99, 102, 241, 0.5)' },
+          '0%': { 'box-shadow': '0 0 5px 3px rgba(99, 102, 241, 0.5)' },
           '100%': { 'box-shadow': '0 0 20px 5px rgba(99, 102, 241, 0.8)' }
         },
 
