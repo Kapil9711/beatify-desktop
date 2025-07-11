@@ -1,19 +1,61 @@
-import { Button, Input, Checkbox, Link, Form, Divider } from '@heroui/react'
+import { Button, Input, Link, Form, Divider } from '@heroui/react'
 import { Icon } from '@iconify/react'
-import React from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { icons } from '@renderer/data/ImagesAndIcon'
 import { useAuthContext } from '@renderer/pages/Auth'
+import { userNameAlreadyTakenApi } from './api'
+
+const checkPasswordMatch = (password: string, confirmPassword: string) => {
+  let flag = true
+  if (password.length > 0 && confirmPassword.length > 0) {
+    if (password !== confirmPassword) flag = false
+  }
+
+  return flag
+}
+const checkUserNameAlreadyTaken = async (userName: string) => {
+  const response = await userNameAlreadyTakenApi({ userName })
+  if (response.status == 200) return true
+  else return false
+}
 
 const SignUP = () => {
   const [isVisible, setIsVisible] = React.useState(false)
   const toggleVisibility = () => setIsVisible(!isVisible)
   const authContextData = useAuthContext()
+  const [isUserNameTaken, setIsUserNameTaken] = useState(false)
+
+  const password: string = authContextData?.registerForm?.password || ''
+  const confirmPassword: string = authContextData?.registerForm?.confirmPassword || ''
+  const userName: string = authContextData?.registerForm?.userName || ''
+
+  let isPasswordMatched = useMemo(() => {
+    let flag = true
+    flag = checkPasswordMatch(password, confirmPassword)
+    if (password.length == 0 && confirmPassword.length == 0) flag = true
+    return flag
+  }, [password, confirmPassword])
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
+    if (!checkPasswordMatch(password, confirmPassword)) return
+    if (isUserNameTaken) return
     authContextData?.handleUserAction({ type: 'REGISTER', payload: authContextData.registerForm })
   }
   const navigate = useNavigate()
+
+  useEffect(() => {
+    ;(async () => {
+      if (userName) {
+        const isTaken = await checkUserNameAlreadyTaken(userName)
+        setIsUserNameTaken(isTaken)
+      } else {
+        setIsUserNameTaken(false)
+      }
+    })()
+  }, [userName])
+
   return (
     <div className="flex h-full w-full items-center justify-center ">
       <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl shadow-blue-400 bg-gray-50">
@@ -35,6 +77,8 @@ const SignUP = () => {
             value={authContextData?.registerForm.email}
           />
           <Input
+            isInvalid={isUserNameTaken}
+            errorMessage="Username Already Taken"
             isRequired
             label="Username"
             name="userName"
@@ -66,6 +110,8 @@ const SignUP = () => {
           />
           <Input
             isRequired
+            errorMessage="Confirm Password Not Matched"
+            isInvalid={!isPasswordMatched}
             size="sm"
             endContent={
               <button type="button" onClick={toggleVisibility}>

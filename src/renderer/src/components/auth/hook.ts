@@ -1,13 +1,13 @@
 import { LoginForm, RegisterForm, useAuthReturn, UserAction } from '@renderer/types/formType'
 import { useForm } from '../customHooks/useForm'
-import { useMutation } from '@tanstack/react-query'
-import { loginUserApi, registerUserApi } from './api'
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { loginUserApi, registerUserApi, userNameAlreadyTakenApi } from './api'
 import { generalUtil } from '@renderer/utils/generalUtility'
 import { handleErrorResponse, handleSuccessResponse } from '@renderer/utils/apiUtils'
 
 const useAuth = (): useAuthReturn => {
-  const { loginForm, setLoginForm, loginHandleChange } = useLogin()
-  const { registerForm, setRegisterForm, registerHandleChange } = useRegister()
+  const { loginForm, setLoginForm, loginHandleChange, resetLoginForm } = useLogin()
+  const { registerForm, setRegisterForm, registerHandleChange, resetRegisterForm } = useRegister()
 
   const handleUserAction = (action: UserAction) => {
     const handleLogin = (data: LoginForm) => {
@@ -37,18 +37,21 @@ const useAuth = (): useAuthReturn => {
     switch (action.type) {
       case 'LOGIN':
         handleLogin(action.payload)
+        break
       case 'REGISTER':
         hanldeRegister(action.payload as RegisterForm)
+        break
     }
   }
 
   const { mutate: loginUserMutate } = useMutation({
     mutationKey: ['loginUser'],
     mutationFn: (payload: LoginForm) => loginUserApi(payload),
-    onSuccess: (response) => {
+    onSuccess: async (response) => {
       const { status } = response
       if (status == 200) {
-        handleSuccessResponse({ type: 'LOGIN', payload: response })
+        await handleSuccessResponse({ type: 'LOGIN', payload: response })
+        resetLoginForm()
       }
       if (status != 200) {
         handleErrorResponse({ type: 'COMMON', payload: response })
@@ -57,19 +60,20 @@ const useAuth = (): useAuthReturn => {
   })
 
   const { mutate: registerUserMutate } = useMutation({
-    mutationKey: ['loginUser'],
+    mutationKey: ['registerUser'],
     mutationFn: (payload: RegisterForm) => registerUserApi(payload),
-    onSuccess: (response) => {
-      console.log(response)
+    onSuccess: async (response) => {
       const { status } = response
       if (status == 200) {
-        handleSuccessResponse({ type: 'REGISTER', payload: response })
+        await handleSuccessResponse({ type: 'REGISTER', payload: response })
+        resetRegisterForm()
       }
       if (status != 200) {
         handleErrorResponse({ type: 'COMMON', payload: response })
       }
     }
   })
+
   return {
     loginForm,
     setLoginForm,
@@ -85,7 +89,8 @@ const useLogin = () => {
   const {
     form: loginForm,
     setForm: setLoginForm,
-    handleChange: loginHandleChange
+    handleChange: loginHandleChange,
+    resetForm: resetLoginForm
   } = useForm<LoginForm>({
     email: '',
     password: '',
@@ -95,7 +100,8 @@ const useLogin = () => {
   return {
     loginForm,
     setLoginForm,
-    loginHandleChange
+    loginHandleChange,
+    resetLoginForm
   }
 }
 
@@ -103,7 +109,8 @@ const useRegister = () => {
   const {
     form: registerForm,
     setForm: setRegisterForm,
-    handleChange: registerHandleChange
+    handleChange: registerHandleChange,
+    resetForm: resetRegisterForm
   } = useForm<RegisterForm>({
     email: '',
     password: '',
@@ -114,7 +121,8 @@ const useRegister = () => {
   return {
     registerForm,
     setRegisterForm,
-    registerHandleChange
+    registerHandleChange,
+    resetRegisterForm
   }
 }
 

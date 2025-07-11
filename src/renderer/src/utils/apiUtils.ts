@@ -22,7 +22,7 @@ type UserActionSuccessResponse =
   | { type: 'REGISTER'; payload: SuccessResponse }
   | { type: 'LOGOUT'; payload: SuccessResponse }
 
-export const handleSuccessResponse = (action: UserActionSuccessResponse) => {
+export const handleSuccessResponse = async (action: UserActionSuccessResponse) => {
   // handleLoginResponse
   const handleLoginResponse = (payload: UserLoginSuccessResponse) => {
     const { token, message } = payload
@@ -40,10 +40,13 @@ export const handleSuccessResponse = (action: UserActionSuccessResponse) => {
   switch (action.type) {
     case 'LOGIN':
       handleLoginResponse(action.payload.data)
+      break
     case 'REGISTER':
       handleRegisterResponse(action.payload.data)
+      break
     case 'LOGOUT':
   }
+  return true
 }
 
 // ********************error response hanlder************************

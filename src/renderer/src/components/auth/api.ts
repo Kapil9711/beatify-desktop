@@ -13,3 +13,9 @@ export const registerUserApi = async (
 ): Promise<SuccessResponse<any> | ErrorResponse> => {
   return await axiosBase({ ...endpoints.registerUser, data: payload })
 }
+
+export const userNameAlreadyTakenApi = async (payload: {
+  userName: string
+}): Promise<SuccessResponse<any> | ErrorResponse> => {
+  return await axiosBase({ ...endpoints.checkUserNameTaken, params: payload })
+}
