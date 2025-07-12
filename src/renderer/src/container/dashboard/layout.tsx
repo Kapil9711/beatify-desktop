@@ -14,7 +14,7 @@ import { SidebarInset, SidebarProvider, SidebarTrigger } from '../../components/
 function SideBar() {
   return (
     <SidebarProvider>
-      <AppSidebar className="desktop:w-64 tablet:w-56  bg-white" />
+      <AppSidebar className="desktop:w-64 tablet:w-56 phone:w-52  bg-white" />
       <SidebarInset className="max-h-[100vh]">
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 border-b-1 border-gray-200">
           <div className="flex items-center gap-2 px-4">

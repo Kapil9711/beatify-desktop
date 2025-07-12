@@ -22,8 +22,10 @@ import {
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-  SidebarTrigger
+  SidebarTrigger,
+  useSidebar
 } from '@renderer/components/ui/sidebar'
+import { useAuthContext } from '@renderer/providers/authProvider'
 
 // This is sample data.
 const data = {
@@ -106,24 +108,41 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const { open, setOpen } = useSidebar()
   return (
-    <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
-        <div className="mt-2 flex justify-around">
-          <h1 className=" relative uppercase font-bold tracking-wide text-xl">Beatify</h1>
-          <SidebarTrigger className="desktop:hidden tablet:ml-14 phone:ml-8" />
-        </div>
-      </SidebarHeader>
-      <SidebarContent>
-        <NavMain items={data.dashboard} />
-        {/* <NavMain items={data.dashboard} /> */}
+    <div className="relative max-w-fit">
+      {open && (
+        <div
+          onClick={() => setOpen(false)}
+          className="w-[100vw] h-[100vh] bg-gray-950 opacity-50 z-10 absolute left-0 desktop:hidden"
+        ></div>
+      )}
+      <Sidebar className="relative" collapsible="icon" {...props}>
+        <SidebarHeader>
+          <div className="mt-2 flex justify-around">
+            <h1 className=" relative uppercase font-bold tracking-wide text-xl">Beatify</h1>
+            <SidebarTrigger className="desktop:hidden tablet:ml-14 phone:ml-8" />
+          </div>
+        </SidebarHeader>
+        <SidebarContent>
+          <NavMain items={data.dashboard} />
+          {/* <NavMain items={data.dashboard} /> */}
 
-        {/* <NavProjects projects={data.projects} /> */}
-      </SidebarContent>
-      <SidebarFooter>
-        <NavUser user={data.user} />
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
+          {/* <NavProjects projects={data.projects} /> */}
+        </SidebarContent>
+        <SidebarFooterWithAuthData />
+        <SidebarRail />
+      </Sidebar>
+    </div>
+  )
+}
+
+const SidebarFooterWithAuthData = () => {
+  const { user, logout } = useAuthContext() || {}
+
+  return (
+    <SidebarFooter>
+      <NavUser user={user} logout={logout} />
+    </SidebarFooter>
   )
 }

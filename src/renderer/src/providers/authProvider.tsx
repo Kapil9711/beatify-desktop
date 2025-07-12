@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useMemo, useState } from 'react'
+import { ReactNode, useContext, useEffect, useMemo, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { createContext } from 'react'
 import { Spinner } from '@heroui/react'
@@ -11,10 +11,13 @@ interface AuthContextType {
   login: (token: string) => void
   logout: () => void
 }
-const AuthContext = createContext<AuthContextType | null>(null)
 interface AuthProviderProps {
   children: ReactNode
 }
+
+const AuthContext = createContext<AuthContextType | null>(null)
+export const useAuthContext = () => useContext(AuthContext)
+
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [user, setUser] = useState(null as any)
