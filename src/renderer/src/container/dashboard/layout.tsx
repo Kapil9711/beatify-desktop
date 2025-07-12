@@ -23,7 +23,7 @@ const DashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <div className="flex ">
       <SidebarProvider>
-        <div>
+        <div className="relative z-50">
           <SideBar />
         </div>
         <div className="flex-1 ">

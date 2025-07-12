@@ -6,6 +6,7 @@ import AuthLayout from './pages/Auth'
 import SignIn from './pages/Auth/SignIn'
 import SignUp from './pages/Auth/SignUp'
 import Dashboard from './pages/dashborad'
+import LocalPage from './pages/dashborad/local'
 // import NotFound from './pages/NotFound'
 
 export const router = createHashRouter([
@@ -49,7 +50,7 @@ export const router = createHashRouter([
           },
           {
             path: 'local',
-            element: <h1 className="text-4xl ">local</h1>
+            element: <LocalPage />
           },
           {
             path: 'sign-up',

@@ -42,7 +42,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         }
       })
       setUser(data?.data)
-      navigate('/dashboard')
+      navigate('/dashboard/local')
     } catch (error) {
       localStorage.setItem('token', '')
       navigate('/auth')
