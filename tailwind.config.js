@@ -21,7 +21,7 @@ module.exports = {
         xs: { raw: '(max-width: 460px)' }, // Small phones
         '2xs': { raw: '(max-width: 400px)' },
         '3xs': { raw: '(max-width: 360px)' },
-        '4xs': { raw: '(max-width: 320px)' },
+        '4xs': { raw: '(max-width: 330px)' },
 
         '3xl': '1920px', // Large monitors
         '4k': '2560px', // 4K displays

@@ -66,7 +66,7 @@ const data = {
     },
     {
       title: 'Offline',
-      url: '#',
+      url: '',
       icon: SquareTerminal,
       isActive: true,
       items: [

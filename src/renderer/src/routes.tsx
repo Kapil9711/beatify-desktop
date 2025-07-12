@@ -44,8 +44,12 @@ export const router = createHashRouter([
         element: <Dashboard />,
         children: [
           {
+            index: true, // This makes SignIn the default route
+            element: <SignIn />
+          },
+          {
             path: 'local',
-            element: <h1>local</h1>
+            element: <h1 className="text-4xl ">local</h1>
           },
           {
             path: 'sign-up',

@@ -65,6 +65,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   }, [user])
 
+  console.log(location.pathname, 'pathname')
+
   if (location.pathname.includes('auth')) {
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
   }

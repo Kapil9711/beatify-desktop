@@ -55,7 +55,9 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton
-                  onClick={() => handleNavigate(item?.url)}
+                  onClick={() => {
+                    if (item.url) handleNavigate(item?.url)
+                  }}
                   className={`hover:bg-green-300 ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(item.title.toLowerCase()) ? 'bg-green-400' : ''} `}
                   tooltip={item.title}
                 >
@@ -71,13 +73,13 @@ export function NavMain({
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
                       <SidebarMenuSubButton
-                        onClick={() => handleNavigate(item?.url)}
-                        className="hover:bg-green-300"
+                        onClick={() => {
+                          if (subItem.url) handleNavigate(subItem?.url)
+                        }}
+                        className={`hover:bg-green-300 ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(subItem.title.toLowerCase()) ? 'bg-green-400' : ''} `}
                         asChild
                       >
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
+                        <span>{subItem.title}</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}
