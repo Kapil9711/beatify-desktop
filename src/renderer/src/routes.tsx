@@ -44,8 +44,8 @@ export const router = createHashRouter([
         element: <Dashboard />,
         children: [
           {
-            path: 'sign-in',
-            element: <SignIn />
+            path: 'local',
+            element: <h1>local</h1>
           },
           {
             path: 'sign-up',

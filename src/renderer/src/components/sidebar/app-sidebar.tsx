@@ -54,13 +54,13 @@ const data = {
   dashboard: [
     {
       title: 'Home',
-      url: '#',
+      url: '/dashboard',
       icon: SquareTerminal,
       isActive: true
     },
     {
       title: 'Playlist',
-      url: '#',
+      url: '/dashboard/playlist',
       icon: SquareTerminal,
       isActive: true
     },
@@ -72,11 +72,11 @@ const data = {
       items: [
         {
           title: 'Downloads',
-          url: '#'
+          url: '/dashboard/downloads'
         },
         {
-          title: 'Local Files',
-          url: '#'
+          title: 'Local',
+          url: '/dashboard/local'
         }
       ]
     },

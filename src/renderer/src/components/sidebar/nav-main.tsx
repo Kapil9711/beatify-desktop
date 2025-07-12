@@ -17,7 +17,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '@renderer/components/ui/sidebar'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export function NavMain({
   items,
@@ -37,6 +37,9 @@ export function NavMain({
 }) {
   const location = useLocation()
   const currPath = location.pathname.toLowerCase()
+  const navigate = useNavigate()
+
+  const handleNavigate = (url: string) => navigate(url)
 
   return (
     <SidebarGroup>
@@ -52,6 +55,7 @@ export function NavMain({
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
                 <SidebarMenuButton
+                  onClick={() => handleNavigate(item?.url)}
                   className={`hover:bg-green-300 ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(item.title.toLowerCase()) ? 'bg-green-400' : ''} `}
                   tooltip={item.title}
                 >
@@ -66,7 +70,11 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton className="hover:bg-green-300" asChild>
+                      <SidebarMenuSubButton
+                        onClick={() => handleNavigate(item?.url)}
+                        className="hover:bg-green-300"
+                        asChild
+                      >
                         <a href={subItem.url}>
                           <span>{subItem.title}</span>
                         </a>
