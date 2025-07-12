@@ -5,7 +5,7 @@ import Settings from './pages/Settings'
 import AuthLayout from './pages/Auth'
 import SignIn from './pages/Auth/SignIn'
 import SignUp from './pages/Auth/SignUp'
-import Dashboard from './pages/dashborad.tsx'
+import Dashboard from './pages/dashborad'
 // import NotFound from './pages/NotFound'
 
 export const router = createHashRouter([

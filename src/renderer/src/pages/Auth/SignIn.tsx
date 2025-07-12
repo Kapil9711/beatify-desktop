@@ -1,4 +1,4 @@
-import SignIn from '@renderer/components/auth/SignIn'
+import SignIn from '@renderer/container/auth/SignIn'
 
 const SignInPage = () => {
   return <SignIn />

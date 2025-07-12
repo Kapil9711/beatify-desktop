@@ -1,4 +1,4 @@
-import SignUP from '@renderer/components/auth/SignUp'
+import SignUP from '@renderer/container/auth/SignUp'
 
 const SignUpPage = () => {
   return <SignUP />

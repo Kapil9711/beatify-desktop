@@ -17,9 +17,11 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '@renderer/components/ui/sidebar'
+import { useLocation } from 'react-router-dom'
 
 export function NavMain({
-  items
+  items,
+  mainTitle = 'Media'
 }: {
   items: {
     title: string
@@ -31,10 +33,14 @@ export function NavMain({
       url: string
     }[]
   }[]
+  mainTitle?: string
 }) {
+  const location = useLocation()
+  const currPath = location.pathname.toLowerCase()
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>{mainTitle}</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -45,17 +51,22 @@ export function NavMain({
           >
             <SidebarMenuItem>
               <CollapsibleTrigger asChild>
-                <SidebarMenuButton tooltip={item.title}>
+                <SidebarMenuButton
+                  className={`hover:bg-green-300 ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(item.title.toLowerCase()) ? 'bg-green-400' : ''} `}
+                  tooltip={item.title}
+                >
                   {item.icon && <item.icon />}
                   <span>{item.title}</span>
-                  <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  {item.items && (
+                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  )}
                 </SidebarMenuButton>
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
+                      <SidebarMenuSubButton className="hover:bg-green-300" asChild>
                         <a href={subItem.url}>
                           <span>{subItem.title}</span>
                         </a>

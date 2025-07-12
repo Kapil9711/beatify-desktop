@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   return (
     <>
       <h1>home page</h1>
-      <Button onPress={() => navigate('/settings')}>Settings</Button>
+      <Button onPress={() => navigate('/dashboard')}>Settings</Button>
     </>
   )
 }

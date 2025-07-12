@@ -1,4 +1,4 @@
-import useAuth from '@renderer/components/auth/hook'
+import useAuth from '@renderer/container/auth/hook'
 import { images } from '@renderer/data/ImagesAndIcon'
 import { useAuthReturn } from '@renderer/types/formType'
 import { createContext, useContext } from 'react'

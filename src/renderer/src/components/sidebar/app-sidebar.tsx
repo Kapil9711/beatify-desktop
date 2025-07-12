@@ -15,13 +15,14 @@ import {
 import { NavMain } from './nav-main'
 import { NavProjects } from './nav-projects'
 import { NavUser } from './nav-user'
-import { TeamSwitcher } from './team-switcher'
+
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail
+  SidebarRail,
+  SidebarTrigger
 } from '@renderer/components/ui/sidebar'
 
 // This is sample data.
@@ -48,69 +49,36 @@ const data = {
       plan: 'Free'
     }
   ],
-  navMain: [
+  dashboard: [
     {
-      title: 'Playground',
+      title: 'Home',
+      url: '#',
+      icon: SquareTerminal,
+      isActive: true
+    },
+    {
+      title: 'Playlist',
+      url: '#',
+      icon: SquareTerminal,
+      isActive: true
+    },
+    {
+      title: 'Offline',
       url: '#',
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: 'History',
+          title: 'Downloads',
           url: '#'
         },
         {
-          title: 'Starred',
-          url: '#'
-        },
-        {
-          title: 'Settings',
+          title: 'Local Files',
           url: '#'
         }
       ]
     },
-    {
-      title: 'Models',
-      url: '#',
-      icon: Bot,
-      items: [
-        {
-          title: 'Genesis',
-          url: '#'
-        },
-        {
-          title: 'Explorer',
-          url: '#'
-        },
-        {
-          title: 'Quantum',
-          url: '#'
-        }
-      ]
-    },
-    {
-      title: 'Documentation',
-      url: '#',
-      icon: BookOpen,
-      items: [
-        {
-          title: 'Introduction',
-          url: '#'
-        },
-        {
-          title: 'Get Started',
-          url: '#'
-        },
-        {
-          title: 'Tutorials',
-          url: '#'
-        },
-        {
-          title: 'Changelog',
-          url: '#'
-        }
-      ]
-    },
+
     {
       title: 'Settings',
       url: '#',
@@ -134,23 +102,6 @@ const data = {
         }
       ]
     }
-  ],
-  projects: [
-    {
-      name: 'Design Engineering',
-      url: '#',
-      icon: Frame
-    },
-    {
-      name: 'Sales & Marketing',
-      url: '#',
-      icon: PieChart
-    },
-    {
-      name: 'Travel',
-      url: '#',
-      icon: Map
-    }
   ]
 }
 
@@ -158,11 +109,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <div className="mt-2 flex justify-around">
+          <h1 className=" relative uppercase font-bold tracking-wide text-xl">Beatify</h1>
+          <SidebarTrigger className="desktop:hidden tablet:ml-14 phone:ml-8" />
+        </div>
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavMain items={data.dashboard} />
+        {/* <NavMain items={data.dashboard} /> */}
+
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

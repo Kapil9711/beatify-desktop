@@ -1,7 +1,7 @@
 import { LoginForm, RegisterForm, useAuthReturn, UserAction } from '@renderer/types/formType'
-import { useForm } from '../customHooks/useForm'
-import { useMutation, useQuery } from '@tanstack/react-query'
-import { loginUserApi, registerUserApi, userNameAlreadyTakenApi } from './api'
+import { useForm } from '@renderer/components/customHooks/useForm'
+import { useMutation } from '@tanstack/react-query'
+import { loginUserApi, registerUserApi } from './api'
 import { generalUtil } from '@renderer/utils/generalUtility'
 import { handleErrorResponse, handleSuccessResponse } from '@renderer/utils/apiUtils'
 
