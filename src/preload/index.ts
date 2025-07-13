@@ -4,7 +4,10 @@ import { electronAPI } from '@electron-toolkit/preload'
 // Custom APIs for renderer
 const api = {
   selectFolder: (): Promise<string | null> => ipcRenderer.invoke('select-folder'),
-  isPathExist: (path: string): Promise<boolean> => ipcRenderer.invoke('folder-exits', path)
+  isPathExist: (path: string): Promise<boolean> => ipcRenderer.invoke('folder-exits', path),
+  scanFolder: (path: string, scanType?: string[]): Promise<string[]> =>
+    ipcRenderer.invoke('scan-folder', path, scanType),
+  getAudioData: (path: string): Promise<any | null> => ipcRenderer.invoke('get-audio-data', path)
 }
 
 // if process.contextIsolated that use contextBridge
