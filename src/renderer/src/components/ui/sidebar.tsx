@@ -206,7 +206,7 @@ function Sidebar({
     <>
       {open && (
         <div
-          className="group peer text-sidebar-foreground block desktop:w-64"
+          className="group peer text-sidebar-foreground block desktop:w-56"
           data-state={state}
           data-collapsible={state === 'collapsed' ? collapsible : ''}
           data-variant={variant}
@@ -235,7 +235,7 @@ function Sidebar({
               // Adjust the padding for floating and inset variants.
               variant === 'floating' || variant === 'inset'
                 ? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
-                : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l',
+                : 'group-data-[collapsible=icon]:w-(--sidebar-width-icon)  group-data-[side=right]:border-l',
 
               className
             )}

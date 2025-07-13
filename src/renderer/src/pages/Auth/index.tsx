@@ -13,10 +13,18 @@ const AuthLayout = () => {
   return (
     <div
       // style={{ backgroundImage: `url(${images?.backgroundImage})` }}
-      className={`flex h-[100vh] w-[100vw] justify-center items-center bg-bg `}
+      className={`flex h-[100vh] w-[100vw] relative justify-center items-center bg-bg `}
     >
       <AuthContext value={data}>
-        <Button onPress={() => themeContextData?.switchTheme()}>SwitchTheme</Button>
+        <div className="absolute top-5">
+          <button
+            className="rounded-full bg-card p-2"
+            onClick={() => themeContextData?.switchTheme()}
+          >
+            SwitchTheme
+          </button>
+        </div>
+
         <Outlet />
       </AuthContext>
     </div>

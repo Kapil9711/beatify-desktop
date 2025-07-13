@@ -10,16 +10,18 @@ import {
 } from '../../components/ui/breadcrumb'
 import { Separator } from '../../components/ui/separator'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '../../components/ui/sidebar'
+import { useThemeContext } from '@renderer/providers/themeProvider'
 
 function SideBar() {
   return (
     <>
-      <AppSidebar className="desktop:w-64 tablet:w-56 phone:w-52  bg-white" />
+      <AppSidebar className="desktop:w-56 tablet:w-56 phone:w-52 " />
     </>
   )
 }
 
 const DashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+  const themeContextData = useThemeContext()
   return (
     <div className="flex ">
       <SidebarProvider>
@@ -27,8 +29,8 @@ const DashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
           <SideBar />
         </div>
         <div className="flex-1 ">
-          <SidebarInset className="max-h-[100vh]">
-            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 border-b-1 border-gray-200">
+          <SidebarInset className="max-h-[100vh] bg-bg ">
+            <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12 ">
               <div className="flex items-center gap-2 px-4">
                 <SidebarTrigger className="-ml-1" />
                 <Separator
@@ -46,11 +48,18 @@ const DashboardLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
                     </BreadcrumbItem>
                   </BreadcrumbList>
                 </Breadcrumb>
+
+                <button
+                  className="rounded-full bg-card p-2"
+                  onClick={() => themeContextData?.switchTheme()}
+                >
+                  SwitchTheme
+                </button>
               </div>
             </header>
           </SidebarInset>
 
-          <div className="border-2 border-green-400 min-h-[calc(100vh-67px)] phone:px-2 tablet:px-3 desktop:px-5 py-5">
+          <div className="bg-bg min-h-[calc(100vh-67px)] phone:px-2 tablet:px-3 desktop:px-5 py-5">
             {children}
           </div>
         </div>

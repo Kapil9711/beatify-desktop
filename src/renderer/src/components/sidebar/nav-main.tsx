@@ -58,7 +58,7 @@ export function NavMain({
                   onClick={() => {
                     if (item.url) handleNavigate(item?.url)
                   }}
-                  className={`hover:bg-green-300 ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(item.title.toLowerCase()) ? 'bg-green-400' : ''} `}
+                  className={`hover:bg-primary hover:text-white  ${(currPath == '/dashboard' && item.title == 'Explore') || currPath.includes(item.title.toLowerCase()) ? 'text-primary border-primary border-r-4 !rounded-none' : ''} `}
                   tooltip={item.title}
                 >
                   {item.icon && <item.icon />}
@@ -76,7 +76,7 @@ export function NavMain({
                         onClick={() => {
                           if (subItem.url) handleNavigate(subItem?.url)
                         }}
-                        className={`hover:bg-green-300 ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(subItem.title.toLowerCase()) ? 'bg-green-400' : ''} `}
+                        className={`cursor-pointer hover:bg-primary hover:text-white  ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(subItem.title.toLowerCase()) ? 'text-primary border-primary border-r-4 !rounded-none' : ''} `}
                         asChild
                       >
                         <span>{subItem.title}</span>

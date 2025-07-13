@@ -6,6 +6,7 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
+  Library,
   Map,
   PieChart,
   Settings2,
@@ -51,10 +52,55 @@ const data = {
       plan: 'Free'
     }
   ],
-  dashboard: [
+  menu: [
     {
-      title: 'Home',
+      title: 'Explore',
       url: '/dashboard',
+      icon: SquareTerminal,
+      isActive: true
+    },
+    {
+      title: 'Genres',
+      url: '/dashboard/genres',
+      icon: SquareTerminal,
+      isActive: true
+    },
+
+    {
+      title: 'Artist',
+      url: '/dashboard/artist',
+      icon: SquareTerminal,
+      isActive: true
+    }
+
+    // {
+    //   title: 'Settings',
+    //   url: '#',
+    //   icon: Settings2,
+    //   items: [
+    //     {
+    //       title: 'General',
+    //       url: '#'
+    //     },
+    //     {
+    //       title: 'Team',
+    //       url: '#'
+    //     },
+    //     {
+    //       title: 'Billing',
+    //       url: '#'
+    //     },
+    //     {
+    //       title: 'Limits',
+    //       url: '#'
+    //     }
+    //   ]
+    // }
+  ],
+  library: [
+    {
+      title: 'Recent',
+      url: '/dashboard/recent',
       icon: SquareTerminal,
       isActive: true
     },
@@ -65,44 +111,16 @@ const data = {
       isActive: true
     },
     {
-      title: 'Offline',
-      url: '',
+      title: 'Favourites',
+      url: '/dashboard/favorites',
       icon: SquareTerminal,
-      isActive: true,
-      items: [
-        {
-          title: 'Downloads',
-          url: '/dashboard/downloads'
-        },
-        {
-          title: 'Local',
-          url: '/dashboard/local'
-        }
-      ]
+      isActive: true
     },
-
     {
-      title: 'Settings',
-      url: '#',
-      icon: Settings2,
-      items: [
-        {
-          title: 'General',
-          url: '#'
-        },
-        {
-          title: 'Team',
-          url: '#'
-        },
-        {
-          title: 'Billing',
-          url: '#'
-        },
-        {
-          title: 'Limits',
-          url: '#'
-        }
-      ]
+      title: 'Local',
+      url: '/dashboard/local',
+      icon: SquareTerminal,
+      isActive: true
     }
   ]
 }
@@ -114,10 +132,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {open && (
         <div
           onClick={() => setOpen(false)}
-          className="w-[100vw] h-[100vh] bg-gray-950 opacity-50 z-10 absolute left-0 desktop:hidden"
+          className="w-[100vw] h-[100vh] bg-black opacity-[.7] z-10 absolute left-0 desktop:hidden"
         ></div>
       )}
-      <Sidebar className="relative" collapsible="icon" {...props}>
+      <Sidebar className="relative bg-sidebar !border-none" collapsible="icon" {...props}>
         <SidebarHeader>
           <div className="mt-2 flex justify-around">
             <h1 className=" relative uppercase font-bold tracking-wide text-xl">Beatify</h1>
@@ -125,13 +143,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </div>
         </SidebarHeader>
         <SidebarContent>
-          <NavMain items={data.dashboard} />
+          <NavMain items={data.menu} mainTitle="MENU" />
+          <NavMain items={data.library} mainTitle="Library" />
+
           {/* <NavMain items={data.dashboard} /> */}
 
           {/* <NavProjects projects={data.projects} /> */}
         </SidebarContent>
         <SidebarFooterWithAuthData />
-        <SidebarRail />
+        {/* <SidebarRail /> */}
       </Sidebar>
     </div>
   )

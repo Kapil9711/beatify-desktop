@@ -1,3 +1,4 @@
+import { localStorageUtils } from '@renderer/utils/localStorageUtils'
 import { useEffect, useRef } from 'react'
 
 export interface Theme {
@@ -46,15 +47,19 @@ const useTheme = (): Theme => {
     '--genre-classical-period': '#FEF8FC',
     '--genre-rap-hip-pop': '#F1EEFE'
   }
+  const themeObj = {
+    light: lightTheme,
+    dark: darkTheme
+  }
 
-  const prevTheme = useRef('light')
-
+  const prevTheme = useRef(localStorageUtils.get<'light' | 'dark'>('themeColor') || 'light')
   useEffect(() => {
-    setTheme(lightTheme, 'light')
+    setTheme(themeObj[prevTheme.current], prevTheme.current)
   }, [])
 
   function setTheme(theme: any, type: 'light' | 'dark') {
     prevTheme.current = type
+    localStorageUtils.set<'light' | 'dark'>('themeColor', type)
     for (let key in theme) {
       document.documentElement.style.setProperty(key, theme[key])
     }

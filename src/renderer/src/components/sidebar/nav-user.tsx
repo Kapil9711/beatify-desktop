@@ -47,7 +47,7 @@ export function NavUser({
             </SidebarMenuButton>
           </DropdownMenuTrigger>
           <DropdownMenuContent
-            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg bg-white xs:ml-[-40px] 2xs:ml-[-80px] 3xs:ml-[-100px] 4xs:ml-[-140px] xs:mb-[50px] mb-6 ml-2"
+            className="w-(--radix-dropdown-menu-trigger-width) min-w-56 rounded-lg bg-card text-text  xs:ml-[-40px] 2xs:ml-[-80px] 3xs:ml-[-100px] 4xs:ml-[-140px] xs:mb-[50px] mb-6 ml-2"
             side={isMobile ? 'bottom' : 'right'}
             align="end"
             sideOffset={4}
@@ -65,23 +65,20 @@ export function NavUser({
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
+            {/* <DropdownMenuGroup className="hover:text-white">
               <DropdownMenuItem>
                 <Sparkles />
                 Upgrade to Pro
               </DropdownMenuItem>
             </DropdownMenuGroup>
-            <DropdownMenuSeparator />
+            <DropdownMenuSeparator /> */}
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem className="hover:text-white">
                 <BadgeCheck />
                 Account
               </DropdownMenuItem>
-              <DropdownMenuItem>
-                <CreditCard />
-                Billing
-              </DropdownMenuItem>
-              <DropdownMenuItem>
+
+              <DropdownMenuItem className="hover:text-white">
                 <Bell />
                 Notifications
               </DropdownMenuItem>
@@ -91,6 +88,7 @@ export function NavUser({
               onClick={() => {
                 if (typeof logout == 'function') logout()
               }}
+              className="hover:text-white"
             >
               <LogOut />
               Log out
