@@ -238,8 +238,8 @@ module.exports = {
           '100%': { 'background-position': '100% 50%' }
         },
         borderGlow: {
-          '0%': { 'box-shadow': '0 0 5px 3px rgba(99, 102, 241, 0.5)' },
-          '100%': { 'box-shadow': '0 0 20px 5px rgba(99, 102, 241, 0.8)' }
+          '0%': { 'box-shadow': '0 0 5px 3px var(--color-primary)' },
+          '100%': { 'box-shadow': '0 0 20px 5px var(--color-primary)' }
         },
 
         // ========== GRADIENT EFFECTS ==========
@@ -331,7 +331,23 @@ module.exports = {
         glass: 'rgba(255, 255, 255, 0.1)',
         'dark-glass': 'rgba(0, 0, 0, 0.3)',
         'neon-pink': '#ff00ff',
-        'holographic-blue': 'rgba(0, 255, 255, 0.7)'
+        'holographic-blue': 'rgba(0, 255, 255, 0.7)',
+        bg: 'var(--color-bg)',
+        text: 'var(--color-text)',
+        primary: 'var(--color-primary)',
+        sidebar: 'var(--color-sidebar)',
+        card: 'var(--color-card)',
+        border: 'var(--color-border)',
+        hover: 'var(--color-hover)',
+        accent: 'var(--color-accent)',
+
+        // Optional: genres if you use them in class names
+        'genre-dance-beat': 'var(--genre-dance-beat)',
+        'genre-electro-pop': 'var(--genre-electro-pop)',
+        'genre-alternative-indie': 'var(--genre-alternative-indie)',
+        'genre-hip-pop': 'var(--genre-hip-pop)',
+        'genre-classical-period': 'var(--genre-classical-period)',
+        'genre-rap-hip-pop': 'var(--genre-rap-hip-pop)'
       },
       gradientColorStops: {
         'metal-start': '#c0c0c0',

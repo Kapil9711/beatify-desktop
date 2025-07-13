@@ -1,4 +1,4 @@
-import { Button, Input, Checkbox, Link, Form, Divider } from '@heroui/react'
+import { Button, Input, Checkbox, Link, Form, Divider, cn } from '@heroui/react'
 import { Icon } from '@iconify/react'
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +16,7 @@ const SignIn = () => {
   }
   return (
     <div className="flex h-full w-full items-center justify-center ">
-      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl animate-border-glow bg-gray-50">
+      <div className="flex w-full max-w-sm flex-col gap-4 rounded-large  px-8 pb-10 pt-6 shadow-2xl animate-border-glow bg-card">
         <div className="flex flex-col gap-1">
           <h1 className="text-large font-medium">Sign in to your account</h1>
           <p className="text-small text-default-500">to continue to Beatify</p>
@@ -33,6 +33,10 @@ const SignIn = () => {
             size="sm"
             onChange={authContextData?.loginHandleChange}
             value={authContextData?.loginForm.email}
+            classNames={{
+              base: cn('!border-boder'),
+              inputWrapper: cn('group-data-[focus=true]:!border-primary')
+            }}
           />
           <Input
             isRequired
@@ -59,6 +63,10 @@ const SignIn = () => {
               checked={authContextData?.loginForm?.remember}
               name="remember"
               size="sm"
+              classNames={{
+                base: cn('text-text'),
+                label: cn('text-text')
+              }}
             >
               Remember me
             </Checkbox>
