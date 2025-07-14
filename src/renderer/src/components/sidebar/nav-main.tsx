@@ -68,23 +68,25 @@ export function NavMain({
                   )}
                 </SidebarMenuButton>
               </CollapsibleTrigger>
-              <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
-                    <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton
-                        onClick={() => {
-                          if (subItem.url) handleNavigate(subItem?.url)
-                        }}
-                        className={`cursor-pointer hover:bg-primary hover:text-white  ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(subItem.title.toLowerCase()) ? 'text-primary border-primary border-r-4 !rounded-none' : ''} `}
-                        asChild
-                      >
-                        <span>{subItem.title}</span>
-                      </SidebarMenuSubButton>
-                    </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent>
+              {item?.items && item.items.length > 0 && (
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.items?.map((subItem) => (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton
+                          onClick={() => {
+                            if (subItem.url) handleNavigate(subItem?.url)
+                          }}
+                          className={`cursor-pointer hover:bg-primary hover:text-white  ${(currPath == '/dashboard' && item.title == 'Home') || currPath.includes(subItem.title.toLowerCase()) ? 'text-primary border-primary border-r-4 !rounded-none' : ''} `}
+                          asChild
+                        >
+                          <span>{subItem.title}</span>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              )}
             </SidebarMenuItem>
           </Collapsible>
         ))}

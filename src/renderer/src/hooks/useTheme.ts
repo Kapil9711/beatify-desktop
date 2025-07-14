@@ -1,14 +1,17 @@
 import { localStorageUtils } from '@renderer/utils/localStorageUtils'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export interface Theme {
   darkTheme: any
   lightTheme: any
   setTheme: (theme: any, type: 'light' | 'dark') => void
   switchTheme: () => void
+  activeThemeType: 'light' | 'dark'
 }
 
 const useTheme = (): Theme => {
+  const prevTheme = useRef(localStorageUtils.get<'light' | 'dark'>('themeColor') || 'light')
+  const [activeThemeType, setActiveThemeType] = useState<'light' | 'dark'>(prevTheme.current)
   const darkTheme = {
     '--color-bg': '#0C0B0E',
     '--color-text': '#FCFCFC',
@@ -52,13 +55,13 @@ const useTheme = (): Theme => {
     dark: darkTheme
   }
 
-  const prevTheme = useRef(localStorageUtils.get<'light' | 'dark'>('themeColor') || 'light')
   useEffect(() => {
     setTheme(themeObj[prevTheme.current], prevTheme.current)
   }, [])
 
   function setTheme(theme: any, type: 'light' | 'dark') {
     prevTheme.current = type
+    setActiveThemeType(type)
     localStorageUtils.set<'light' | 'dark'>('themeColor', type)
     for (let key in theme) {
       document.documentElement.style.setProperty(key, theme[key])
@@ -72,7 +75,8 @@ const useTheme = (): Theme => {
       setTheme(lightTheme, 'light')
     }
   }
-  return { setTheme, darkTheme, lightTheme, switchTheme }
+
+  return { setTheme, darkTheme, lightTheme, switchTheme, activeThemeType }
 }
 
 export default useTheme

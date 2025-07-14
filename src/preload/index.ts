@@ -1,10 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { CheckRepoReturnType } from '../main/ipcHandlers/gitSystem'
 
 // Custom APIs for renderer
 const api = {
   selectFolder: (): Promise<string | null> => ipcRenderer.invoke('select-folder'),
-  isPathExist: (path: string): Promise<boolean> => ipcRenderer.invoke('folder-exits', path)
+  isPathExist: (path: string): Promise<boolean> => ipcRenderer.invoke('folder-exits', path),
+  checkRepo: (path: string): Promise<CheckRepoReturnType> => ipcRenderer.invoke('check-repo', path),
+  finalPush: (path: string, targetBranch: string): Promise<boolean> =>
+    ipcRenderer.invoke('final-push', path, targetBranch)
 }
 
 // if process.contextIsolated that use contextBridge

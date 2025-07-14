@@ -7,6 +7,8 @@ import SignIn from './pages/Auth/SignIn'
 import SignUp from './pages/Auth/SignUp'
 import Dashboard from './pages/dashborad'
 import LocalPage from './pages/dashborad/local'
+import ProjectManagerPage from './pages/dashborad/projectManager'
+import ExplorePage from './pages/dashborad/explore'
 // import NotFound from './pages/NotFound'
 
 export const router = createHashRouter([
@@ -46,15 +48,15 @@ export const router = createHashRouter([
         children: [
           {
             index: true, // This makes SignIn the default route
-            element: <SignIn />
+            element: <ExplorePage />
           },
           {
             path: 'local',
             element: <LocalPage />
           },
           {
-            path: 'sign-up',
-            element: <SignUp />
+            path: 'project-manager',
+            element: <ProjectManagerPage />
           }
           // Redirect empty auth to sign-in
           //   {
