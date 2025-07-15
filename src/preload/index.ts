@@ -1,5 +1,6 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import { electronAPI } from '@electron-toolkit/preload'
+import { CheckRepoReturnType } from '../main/ipcHandlers/gitSystem'
 
 // Custom APIs for renderer
 const api = {
@@ -7,7 +8,10 @@ const api = {
   isPathExist: (path: string): Promise<boolean> => ipcRenderer.invoke('folder-exits', path),
   scanFolder: (path: string, scanType?: string[]): Promise<string[]> =>
     ipcRenderer.invoke('scan-folder', path, scanType),
-  getAudioData: (path: string): Promise<any | null> => ipcRenderer.invoke('get-audio-data', path)
+  getAudioData: (path: string): Promise<any | null> => ipcRenderer.invoke('get-audio-data', path),
+  checkRepo: (path: string): Promise<CheckRepoReturnType> => ipcRenderer.invoke('check-repo', path),
+  finalPush: (path: string, targetBranch: string): Promise<boolean> =>
+    ipcRenderer.invoke('final-push', path, targetBranch)
 }
 
 // if process.contextIsolated that use contextBridge

@@ -6,6 +6,8 @@ declare global {
     api: {
       selectFolder: () => Promise<string | null>
       isPathExist: (path: string) => Promise<boolean>
+      checkRepo: (path: string) => Promise<CheckRepoReturnType>
+      finalPush: (path: string) => Promise<boolean>
       scanFolder: (path: string, scanType?: string[]) => Promise<string[]>
       getAudioData: (path: string) => Promise<any | null>
     }

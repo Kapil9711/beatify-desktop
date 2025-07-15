@@ -1,20 +1,8 @@
 import * as React from 'react'
-import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Library,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal
-} from 'lucide-react'
+import { AudioWaveform, Command, GalleryVerticalEnd, SquareTerminal } from 'lucide-react'
 
 import { NavMain } from './nav-main'
-import { NavProjects } from './nav-projects'
+
 import { NavUser } from './nav-user'
 
 import {
@@ -22,7 +10,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail,
   SidebarTrigger,
   useSidebar
 } from '@renderer/components/ui/sidebar'
@@ -122,6 +109,15 @@ const data = {
       icon: SquareTerminal,
       isActive: true
     }
+  ],
+
+  utlities: [
+    {
+      title: 'Project-Manager',
+      url: '/dashboard/project-manager',
+      icon: SquareTerminal,
+      isActive: true
+    }
   ]
 }
 
@@ -145,6 +141,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarContent>
           <NavMain items={data.menu} mainTitle="MENU" />
           <NavMain items={data.library} mainTitle="Library" />
+          <NavMain items={data.utlities} mainTitle="Utility" />
 
           {/* <NavMain items={data.dashboard} /> */}
 

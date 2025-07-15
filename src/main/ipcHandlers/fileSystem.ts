@@ -14,7 +14,7 @@ const registerFileSystemHandler = () => {
     return result.canceled ? null : result.filePaths[0] // return the selected folder path
   })
 
-  ipcMain.handle('folder-exits', async (event, path: string) => {
+  ipcMain.handle('folder-exits', async (_event, path: string) => {
     let exist = false
     if (fs.existsSync(path) && fs.lstatSync(path).isDirectory()) exist = true
     return exist
