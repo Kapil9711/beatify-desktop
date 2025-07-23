@@ -1,13 +1,6 @@
 import { ReactNode } from 'react'
 import { AppSidebar } from '../../components/sidebar/app-sidebar'
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator
-} from '../../components/ui/breadcrumb'
+
 import { Separator } from '../../components/ui/separator'
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '../../components/ui/sidebar'
 import { useThemeContext } from '@renderer/providers/themeProvider'
@@ -59,9 +52,7 @@ const RightComponent = ({ children }) => {
         </header>
       </SidebarInset>
 
-      <div className="bg-bg min-h-[calc(100vh-64px)] phone:px-2 tablet:px-3 desktop:px-5 py-5">
-        {children}
-      </div>
+      <div className="bg-bg h-[calc(100vh-64px)] ">{children}</div>
     </>
   )
 }

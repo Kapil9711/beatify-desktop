@@ -35,7 +35,7 @@ function createWindow(): void {
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
-          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http://localhost:5173 http://localhost:5000; connect-src 'self' ws://localhost:5173 http://localhost:5000"
+          "default-src 'self' 'unsafe-inline' 'unsafe-eval' data: http://localhost:5173 http://localhost:5000 https://beatify-eight.vercel.app https://c.saavncdn.com; connect-src 'self' ws://localhost:5173 http://localhost:5000 https://beatify-eight.vercel.app https://c.saavncdn.com"
         ]
       }
     })

@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { createContext } from 'react'
 import { Spinner } from '@heroui/react'
 import axios from 'axios'
+import { baseUrl } from '@renderer/apiConfig/api'
 
 export let globalNavigate: any = null
 
@@ -36,7 +37,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const token: string = localStorage.getItem('token') || ''
 
     try {
-      const { data } = await axios.get(`http://localhost:5000/api/v1/user`, {
+      const { data } = await axios.get(`${baseUrl}/user`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

@@ -5,9 +5,13 @@ const getToken = (): string | null => {
   return localStorage.getItem('token')
 }
 
+export let baseUrl = 'https://beatify-eight.vercel.app/api/v1'
+
+// baseUrl = 'http://localhost:5000/api/v1'
+
 // 2. Create an Axios instance
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'http://localhost:5000/api/v1', // <-- Replace with actual base URL
+  baseURL: baseUrl, // <-- Replace with actual base URL
   headers: {
     'Content-Type': 'application/json'
   }

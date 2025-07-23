@@ -8,6 +8,7 @@ import {
   BreadcrumbSeparator
 } from '../components/ui/breadcrumb'
 import { ReactNode, useEffect, useMemo, useState } from 'react'
+import ModernAnimatedButton from '@renderer/components/animatedComponents/Button'
 
 const useBreadCrumb = ({
   path
@@ -42,15 +43,15 @@ const useBreadCrumb = ({
                     onPress={() => {
                       setActiveTab(item)
                     }}
-                    className={
-                      activeTab == item ? 'hover:animate-tilt animate-pulse' : 'hover:animate-tilt'
-                    }
-                    color="secondary"
+                    className={activeTab == item ? 'hover:animate-tilt' : 'hover:animate-tilt'}
                     size="sm"
-                    variant={activeTab == item ? 'solid' : 'bordered'}
+                    color="primary"
+                    // variant="ghost"
+                    variant={activeTab == item ? 'solid' : 'ghost'}
                   >
                     {item}
                   </Button>
+                  // <ModernAnimatedButton text={item} />
                 )
               })}
             </BreadcrumbList>
