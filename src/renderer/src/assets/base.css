@@ -216,3 +216,7 @@ button {
 .scrollbar-hide::-webkit-scrollbar {
   display: none; /* Chrome/Safari */
 }
+
+body {
+  box-sizing: border-box;
+}

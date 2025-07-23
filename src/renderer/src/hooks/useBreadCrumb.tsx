@@ -8,7 +8,6 @@ import {
   BreadcrumbSeparator
 } from '../components/ui/breadcrumb'
 import { ReactNode, useEffect, useMemo, useState } from 'react'
-import ModernAnimatedButton from '@renderer/components/animatedComponents/Button'
 
 const useBreadCrumb = ({
   path
@@ -40,6 +39,7 @@ const useBreadCrumb = ({
               {breadCrumbItems.map((item: string) => {
                 return (
                   <Button
+                    key={item}
                     onPress={() => {
                       setActiveTab(item)
                     }}
